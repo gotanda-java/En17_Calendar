@@ -3,7 +3,6 @@ package com.example.calendar_base;
 import java.util.Calendar;
 
 import android.os.Bundle;
-import android.preference.Preference;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -12,6 +11,7 @@ import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.DatePicker;
+import android.widget.TextView;
 
 public class CalendarActivity extends Activity {
 
@@ -44,9 +44,18 @@ public class CalendarActivity extends Activity {
 			String date= preference.getString("DATE", "ありません");
 
 			showDialog(date);
+			//プリファレンスファイルに保存されたデータの表示
+			showDate(date);
 			return true;
 		}
 		return true;
+	}
+
+	//画面に保存データを表示
+	public void showDate(String date) {
+		//TextView取得
+		TextView message = (TextView)findViewById(R.id.tv_message);
+		message.setText(date);
 	}
 
 	private void showDatePickerDialog() {
